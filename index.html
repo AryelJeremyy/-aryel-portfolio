@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aryel — Automation & Marketing Ops</title>
-<meta name="description" content="Portfolio of Aryel — workflow automation and marketing ops. Make.com, Zapier, n8n, Google Apps Script, AI-powered pipelines.">
+<title>Aryel Endaya — Automation & Marketing Ops</title>
+<meta name="description" content="Portfolio of Aryel Endaya — workflow automation and marketing ops. Make.com, Zapier, n8n, Google Apps Script, AI-powered pipelines.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -233,6 +233,27 @@
   }
   .facts dd:last-child{ margin-bottom:0; }
 
+  /* ---------- Execution log ---------- */
+  .log{ margin-top: 22px; }
+  .log-entry{
+    display:grid; grid-template-columns: 160px 1fr; gap: 20px;
+    padding: 20px 0; border-top: 1px solid var(--line);
+  }
+  .log-entry:last-child{ border-bottom: 1px solid var(--line); }
+  .log-time{ font-size: 0.76rem; color: var(--ink-soft); padding-top: 2px; }
+  .log-title{ font-weight: 600; margin-bottom: 8px; }
+  .log-org{ font-weight: 400; color: var(--ink-soft); }
+  .log-body ul{ color: var(--ink-soft); padding-left: 18px; margin: 0; }
+  .log-body li{ margin-bottom: 6px; font-size: 0.94rem; }
+  .log-status{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono', monospace; font-size: 0.68rem;
+    padding: 3px 9px; border-radius: 6px;
+  }
+  @media (max-width: 620px){
+    .log-entry{ grid-template-columns: 1fr; gap: 6px; }
+  }
+
   /* ---------- Skills ---------- */
   .skill-group{ margin-top: 28px; }
   .skill-group h3{
@@ -350,7 +371,7 @@
 
 <header class="site">
   <nav class="nav">
-    <div class="brand"><span class="node"></span> Aryel</div>
+    <div class="brand"><span class="node"></span> Aryel Endaya</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
@@ -369,7 +390,7 @@
     <p class="lede">Automation & marketing ops specialist. I connect forms, CRMs, and AI models into pipelines that route, tag, and follow up — without a human touching a spreadsheet.</p>
     <div class="hero-actions">
       <a class="btn btn-solid" href="#work">View my work →</a>
-      <a class="btn btn-line" href="RESUME-LINK-HERE" target="_blank" rel="noopener">Download resume</a>
+      <a class="btn btn-line" href="assets/aryel-endaya-resume.pdf" target="_blank" rel="noopener">Download resume</a>
     </div>
     <div class="status-strip">
       <span class="pill"><span class="dot"></span> Open to remote roles</span>
@@ -390,20 +411,63 @@
     </div>
     <div class="about-grid">
       <div>
-        <p>I'm an IT graduate from Pangasinan State University (Alaminos City Campus), currently building a career at the intersection of automation and marketing operations — the person who makes sure a lead, a form response, or a piece of content moves through the right system without anyone copy-pasting it by hand.</p>
-        <p>My background spans social media management (including Web3/crypto communities), a customer-facing sales role, and a hands-on OJT at Techniqal Group focused entirely on workflow automation — building acquisition systems, CRM pipelines, and data-cleaning scripts for simulated client accounts.</p>
+        <p>I'm an IT graduate from Pangasinan State University (Alaminos City Campus), building a career at the intersection of automation and marketing operations — the person who makes sure a lead, a form response, or a piece of content moves through the right system without anyone copy-pasting it by hand.</p>
+        <p>I've grown a foreign crypto client's social presence into consistent engagement and contributed to $10K–15K USD in campaign rewards through content execution and community work, co-built a full customer acquisition and onboarding system on a 3-person OJT team, and handled high-volume inbound sales chat before shifting fully into automation.</p>
         <p>Right now I'm building a self-directed portfolio of automation projects to demonstrate exactly what I can do before a client or employer hands me the keys to their real systems.</p>
       </div>
       <dl class="facts">
         <dt>Location</dt>
-        <dd>Philippines · Remote-first</dd>
+        <dd>Alaminos City, Philippines · Remote-first</dd>
         <dt>Focus</dt>
         <dd>Automation & Marketing Ops</dd>
         <dt>Education</dt>
-        <dd>BS Information Technology<br>Pangasinan State University</dd>
-        <dt>Experience</dt>
-        <dd>486-hr OJT in workflow automation, Techniqal Group</dd>
+        <dd>BS Information Technology<br>Pangasinan State University<br><span class="mono" style="font-size:0.78rem;">Diligence in Studies Award · GWA 1.75</span></dd>
+        <dt>Track record</dt>
+        <dd>$10K–15K USD in campaign rewards secured · 486 hrs of hands-on automation training</dd>
       </dl>
+    </div>
+
+    <div class="section-head" style="margin-top:56px;">
+      <div class="kicker">Execution log</div>
+      <h3 style="font-family:'Space Grotesk'; font-size:1.2rem;">Where I've run this stack before</h3>
+    </div>
+
+    <div class="log">
+      <div class="log-entry">
+        <div class="log-time mono">Feb 2026 – May 2026</div>
+        <div class="log-body">
+          <div class="log-title">Automation Intern (OJT) <span class="log-org">· Techniqal Group</span></div>
+          <ul>
+            <li>Co-built a full customer acquisition and onboarding automation system (Framer, Typeform, Stripe, Calendly, Make.com, ActiveCampaign) on a 3-person team, including geocoding-based auto-assignment to the nearest service location</li>
+            <li>Designed a 7-stage automated lead-nurture pipeline with trigger-based tagging and time-delayed follow-ups</li>
+            <li>Wrote Google Apps Script functions to clean and validate customer data across 10 data types, with automated data-quality reporting</li>
+          </ul>
+          <span class="log-status status-live" style="margin-top:8px;">486 hrs completed</span>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-time mono">May 2025 – Dec 2025</div>
+        <div class="log-body">
+          <div class="log-title">Social Media Manager <span class="log-org">· Crypto Campaigns, Remote</span></div>
+          <ul>
+            <li>Managed day-to-day content and community execution for a foreign crypto client's marketing campaigns</li>
+            <li>Grew impressions 28% (to 1.4K) with a 194% engagement rate inside a single 7-day campaign window</li>
+            <li>Researched and executed airdrop strategies, contributing to $10K–15K USD in campaign rewards secured</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-time mono">Jun 2025 – Sep 2025</div>
+        <div class="log-body">
+          <div class="log-title">Customer Sales Representative <span class="log-org">· Remote</span></div>
+          <ul>
+            <li>Handled a high-volume inbound chat queue, converting the majority of interactions into completed sales</li>
+            <li>Built repeat-customer rapport that supported ongoing retention</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -529,16 +593,10 @@
         <span class="chip">Make.com</span>
         <span class="chip">Zapier</span>
         <span class="chip">n8n</span>
-        <span class="chip">Google Apps Script</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <h3>CRM & email marketing</h3>
-      <div class="chips">
-        <span class="chip">ActiveCampaign</span>
-        <span class="chip">MailerLite</span>
         <span class="chip">GoHighLevel</span>
+        <span class="chip">Google Apps Script</span>
+        <span class="chip">Jotform</span>
+        <span class="chip">Typeform</span>
       </div>
     </div>
 
@@ -546,17 +604,41 @@
       <h3>AI & APIs</h3>
       <div class="chips">
         <span class="chip">Claude API</span>
+        <span class="chip">ChatGPT</span>
+        <span class="chip">Gemini</span>
         <span class="chip">Meta / Facebook API</span>
       </div>
     </div>
 
     <div class="skill-group">
-      <h3>Design & PM</h3>
+      <h3>CRM, email & payments</h3>
       <div class="chips">
-        <span class="chip">Canva</span>
+        <span class="chip">ActiveCampaign</span>
+        <span class="chip">MailerLite</span>
+        <span class="chip">Stripe</span>
+        <span class="chip">Calendly</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Front-end & design</h3>
+      <div class="chips">
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">PHP</span>
         <span class="chip">Framer</span>
+        <span class="chip">Figma</span>
+        <span class="chip">Canva</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Project management</h3>
+      <div class="chips">
         <span class="chip">ClickUp</span>
-        <span class="chip">HTML / CSS basics</span>
+        <span class="chip">Google Workspace</span>
+        <span class="chip">Microsoft 365</span>
       </div>
     </div>
   </section>
@@ -571,19 +653,19 @@
     </div>
 
     <div class="contact-grid">
-      <a class="contact-card" href="LINKEDIN-LINK-HERE" target="_blank" rel="noopener">
+      <a class="contact-card" href="https://www.linkedin.com/in/aryel-endaya-12558a34b/" target="_blank" rel="noopener">
         <span><span class="label">LinkedIn</span><span class="value">Connect with me</span></span>
         <span class="arrow">↗</span>
       </a>
-      <a class="contact-card" href="GITHUB-LINK-HERE" target="_blank" rel="noopener">
+      <a class="contact-card" href="https://github.com/AryelJeremyy" target="_blank" rel="noopener">
         <span><span class="label">GitHub</span><span class="value">View my repos</span></span>
         <span class="arrow">↗</span>
       </a>
-      <a class="contact-card" href="mailto:YOUR-EMAIL-HERE">
+      <a class="contact-card" href="mailto:aryelmendaya@gmail.com">
         <span><span class="label">Email</span><span class="value">Send a message</span></span>
         <span class="arrow">↗</span>
       </a>
-      <a class="contact-card" href="ONLINEJOBS-LINK-HERE" target="_blank" rel="noopener">
+      <a class="contact-card" href="https://v2.onlinejobs.ph/jobseekers/info/5216683" target="_blank" rel="noopener">
         <span><span class="label">OnlineJobs.ph</span><span class="value">View my profile</span></span>
         <span class="arrow">↗</span>
       </a>
