@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryel — Automation & Marketing Ops</title>
+<meta name="description" content="Portfolio of Aryel — workflow automation and marketing ops. Make.com, Zapier, n8n, Google Apps Script, AI-powered pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F7F3;
+    --bg-alt: #EEEEE7;
+    --card: #FFFFFF;
+    --ink: #171A18;
+    --ink-soft: #5B5E54;
+    --accent: #4C4FF0;
+    --accent-soft: #E7E7FC;
+    --green: #128A5E;
+    --green-soft: #E1F3EA;
+    --line: #DBDACF;
+    --dot: rgba(23,26,24,0.14);
+    --radius: 14px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(var(--dot) 1px, transparent 1px) 0 0/22px 22px,
+      var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  h1,h2,h3{
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+    background: rgba(247,247,243,0.82);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav .brand{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand .node{
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent);
+    display:inline-block;
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+  .nav ul{
+    list-style:none; display:flex; gap: 26px; margin:0; padding:0;
+    font-size: 0.92rem; color: var(--ink-soft);
+  }
+  .nav ul a{ text-decoration:none; }
+  .nav ul a:hover{ color: var(--ink); }
+  .nav-links{ display:flex; }
+  @media (max-width: 620px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- Pipeline spine ---------- */
+  .spine{
+    position: relative;
+    padding-left: 34px;
+  }
+  .spine::before{
+    content:"";
+    position:absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 1px;
+    background-image: linear-gradient(var(--ink-soft) 40%, rgba(0,0,0,0) 0%);
+    background-position: left;
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
+    opacity: 0.35;
+  }
+  .spine .node-mark{
+    position:absolute; left: 0; width: 11px; height:11px; border-radius:50%;
+    background: var(--bg); border: 2px solid var(--accent);
+    top: 4px;
+  }
+  .spine .node-label{
+    position:absolute; left: -34px; top: 20px;
+    font-size: 0.68rem; color: var(--ink-soft);
+    display:none;
+  }
+  @media (min-width: 760px){
+    .spine{ padding-left: 0; margin-left: 34px; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 96px 0 64px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px; border-radius:50%;
+    background: var(--accent);
+  }
+  .hero h1{
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    max-width: 14ch;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 52ch;
+  }
+  .hero-actions{
+    display:flex; gap: 14px; margin-top: 34px; flex-wrap: wrap;
+  }
+  .btn{
+    font-family:'Inter'; font-weight:600; font-size: 0.94rem;
+    padding: 12px 22px;
+    border-radius: 100px;
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition: transform .15s ease, box-shadow .15s ease;
+    border: 1px solid transparent;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-solid{ background: var(--ink); color: var(--bg); }
+  .btn-solid:hover{ box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+  .btn-line{ border-color: var(--ink); color: var(--ink); }
+
+  .status-strip{
+    margin-top: 46px;
+    display:flex; flex-wrap:wrap; gap: 10px;
+  }
+  .pill{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.72rem;
+    padding: 6px 12px; border-radius: 8px;
+    background: var(--card); border:1px solid var(--line);
+    color: var(--ink-soft);
+    display:flex; align-items:center; gap:7px;
+  }
+  .pill .dot{ width:6px; height:6px; border-radius:50%; background: var(--green); }
+
+  /* ---------- Sections ---------- */
+  section{ padding: 76px 0; border-top: 1px solid var(--line); }
+  section:first-of-type{ border-top:none; }
+
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.76rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .section-head h2{
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .section-head p{
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-top: 10px;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr; gap: 40px;
+    margin-top: 34px;
+  }
+  @media (max-width: 700px){ .about-grid{ grid-template-columns: 1fr; } }
+  .about-grid p{ color: var(--ink-soft); margin: 0 0 16px; }
+  .facts{
+    background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 22px;
+  }
+  .facts dt{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.72rem;
+    color: var(--ink-soft); text-transform:uppercase; letter-spacing:.05em;
+  }
+  .facts dd{
+    margin: 4px 0 18px 0; font-weight: 500;
+  }
+  .facts dd:last-child{ margin-bottom:0; }
+
+  /* ---------- Skills ---------- */
+  .skill-group{ margin-top: 28px; }
+  .skill-group h3{
+    font-size: 0.95rem; font-family:'Inter'; font-weight:600;
+    margin-bottom: 12px;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap: 9px; margin-bottom: 30px;}
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.8rem;
+    background: var(--card); border:1px solid var(--line);
+    padding: 7px 13px; border-radius: 8px;
+  }
+
+  /* ---------- Projects ---------- */
+  .project{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-top: 30px;
+    overflow: hidden;
+  }
+  .project-head{
+    padding: 26px 28px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .project-status{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.7rem;
+    padding: 4px 10px; border-radius: 6px;
+    display:inline-flex; align-items:center; gap:6px;
+    margin-bottom: 14px;
+  }
+  .status-live{ background: var(--green-soft); color: var(--green); }
+  .status-progress{ background: var(--accent-soft); color: var(--accent); }
+  .status-planned{ background: var(--bg-alt); color: var(--ink-soft); }
+  .project h3{ font-size: 1.35rem; }
+  .project .flow-line{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.82rem;
+    color: var(--ink-soft); margin-top: 12px;
+  }
+  .project .flow-line .arrow{ color: var(--accent); }
+  .project-body{ padding: 26px 28px; }
+  .project-body h4{
+    font-family:'Inter'; font-size: 0.95rem; font-weight:600; margin: 26px 0 10px;
+  }
+  .project-body h4:first-child{ margin-top:0; }
+  .project-body p{ color: var(--ink-soft); margin: 0 0 12px; }
+  .project-body ul{ color: var(--ink-soft); padding-left: 20px; margin: 0 0 12px;}
+  .project-body li{ margin-bottom: 6px; }
+
+  .shot{
+    margin: 16px 0 22px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg-alt);
+  }
+  .shot img{ width: 100%; display:block; }
+  .shot figcaption{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.72rem;
+    color: var(--ink-soft); padding: 9px 14px; border-top: 1px solid var(--line);
+  }
+
+  table.results{
+    width:100%; border-collapse: collapse; margin: 10px 0 20px;
+    font-size: 0.9rem;
+  }
+  table.results th, table.results td{
+    text-align:left; padding: 9px 10px; border-bottom: 1px solid var(--line);
+  }
+  table.results th{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.72rem;
+    color: var(--ink-soft); text-transform:uppercase; letter-spacing: .04em;
+  }
+  .ok{ color: var(--green); font-weight: 600; }
+
+  .callout{
+    background: var(--bg-alt);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 4px 0 20px;
+  }
+  .callout strong{ color: var(--ink); }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    margin-top: 30px;
+  }
+  @media (max-width: 600px){ .contact-grid{ grid-template-columns: 1fr; } }
+  .contact-card{
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px 22px;
+    text-decoration:none;
+    display:flex; align-items:center; justify-content:space-between;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .contact-card:hover{ border-color: var(--accent); transform: translateY(-2px); }
+  .contact-card .label{ font-family:'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--ink-soft); display:block; margin-bottom: 4px;}
+  .contact-card .value{ font-weight: 600; }
+  .contact-card .arrow{ color: var(--accent); font-size: 1.2rem; }
+
+  footer{
+    padding: 40px 0 60px;
+    text-align:center;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+  }
+  footer .mono{ opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <div class="brand"><span class="node"></span> Aryel</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top" style="border-top:none; padding-top: 76px;">
+    <div class="eyebrow mono">watch_trigger: new visitor</div>
+    <h1>I build the automations that run <em>while you sleep.</em></h1>
+    <p class="lede">Automation & marketing ops specialist. I connect forms, CRMs, and AI models into pipelines that route, tag, and follow up — without a human touching a spreadsheet.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#work">View my work →</a>
+      <a class="btn btn-line" href="RESUME-LINK-HERE" target="_blank" rel="noopener">Download resume</a>
+    </div>
+    <div class="status-strip">
+      <span class="pill"><span class="dot"></span> Open to remote roles</span>
+      <span class="pill">Make.com · Zapier · n8n</span>
+      <span class="pill">BS Information Technology</span>
+    </div>
+  </section>
+
+  <div class="spine">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="node-mark"></div>
+    <div class="section-head">
+      <div class="kicker">01 · Watch Trigger</div>
+      <h2>About</h2>
+      <p>Where the pipeline starts.</p>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm an IT graduate from Pangasinan State University (Alaminos City Campus), currently building a career at the intersection of automation and marketing operations — the person who makes sure a lead, a form response, or a piece of content moves through the right system without anyone copy-pasting it by hand.</p>
+        <p>My background spans social media management (including Web3/crypto communities), a customer-facing sales role, and a hands-on OJT at Techniqal Group focused entirely on workflow automation — building acquisition systems, CRM pipelines, and data-cleaning scripts for simulated client accounts.</p>
+        <p>Right now I'm building a self-directed portfolio of automation projects to demonstrate exactly what I can do before a client or employer hands me the keys to their real systems.</p>
+      </div>
+      <dl class="facts">
+        <dt>Location</dt>
+        <dd>Philippines · Remote-first</dd>
+        <dt>Focus</dt>
+        <dd>Automation & Marketing Ops</dd>
+        <dt>Education</dt>
+        <dd>BS Information Technology<br>Pangasinan State University</dd>
+        <dt>Experience</dt>
+        <dd>486-hr OJT in workflow automation, Techniqal Group</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="node-mark"></div>
+    <div class="section-head">
+      <div class="kicker">02 · Router</div>
+      <h2>Selected work</h2>
+      <p>Three automation builds, routed by what they demonstrate.</p>
+    </div>
+
+    <!-- PROJECT 1: COACH MAYA -->
+    <article class="project">
+      <div class="project-head">
+        <span class="project-status status-live"><span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--green);"></span> Live · fully tested</span>
+        <h3>Lead Capture → CRM Nurture Pipeline</h3>
+        <div class="flow-line">Google&nbsp;Forms <span class="arrow">→</span> Make.com&nbsp;Router <span class="arrow">→</span> MailerLite&nbsp;×3&nbsp;groups <span class="arrow">→</span> 3-email&nbsp;nurture</div>
+      </div>
+      <div class="project-body">
+        <p style="margin-top:0;">A conditional automation build for a fictional wellness coaching client ("Coach Maya"). A single form submission is routed into one of three tailored email nurture tracks based on the lead's stated goal — no manual tagging, no manual sending.</p>
+
+        <h4>The problem</h4>
+        <p>Every lead has a different goal — weight loss, building strength, or general wellness — and a single generic "thanks for signing up" email doesn't speak to any of them well. The system needed to read a lead's stated goal, tag them correctly in the CRM, and trigger the right 3-email sequence automatically.</p>
+
+        <figure class="shot">
+          <img src="assets/maya-form.png" alt="The live Google Form used to capture leads for Coach Maya">
+          <figcaption>The lead capture form — three fields, one qualifying question.</figcaption>
+        </figure>
+
+        <h4>The build</h4>
+        <p>A Make.com scenario watches the Google Form for new responses and uses a <strong>Router</strong> with three parallel, filtered paths — one per goal. Each path maps the lead's name and email into a MailerLite "Create/Update Subscriber" action and assigns the matching group, which in turn triggers its own 3-email MailerLite automation (immediate welcome → common-mistake email on day 2 → low-pressure booking nudge on day 4).</p>
+
+        <figure class="shot">
+          <img src="assets/maya-router.png" alt="Make.com scenario showing the Router with three branches routing to MailerLite">
+          <figcaption>The Make.com scenario — one Router, three filtered branches into MailerLite.</figcaption>
+        </figure>
+
+        <h4>The debugging story</h4>
+        <p>The branching logic didn't work on the first try, or the fifth. Google Forms' API wraps every answer inside a nested object (<code>textAnswers.answers[].value</code>), and Make.com's UI often displayed a mapping as if it pointed to the right question while actually referencing the wrong depth of that object — producing a string of "invalid email address" errors even when the visible label looked correct.</p>
+
+        <figure class="shot">
+          <img src="assets/maya-filter.png" alt="A Make.com filter condition panel showing the correct .value field mapping">
+          <figcaption>The fix — manually drilling into the actual <span class="mono">.value</span> field instead of trusting the auto-suggested reference.</figcaption>
+        </figure>
+
+        <div class="callout">
+          <strong>What this taught me:</strong> the fix was to manually drill down to the actual <code>.value</code> field for every mapped field rather than trusting the auto-suggested mapping — then replicate that pattern cleanly across all three router paths. Two secondary issues (a stale trigger checkpoint, a typo'd test email blocking the queue) were resolved by understanding why Make's trigger works the way it does, not just retrying the same click.
+        </div>
+
+        <figure class="shot">
+          <img src="assets/maya-groups.png" alt="MailerLite groups page showing subscriber counts across all three goal segments">
+          <figcaption>MailerLite groups — subscribers segmented by goal.</figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="assets/maya-automation.png" alt="One MailerLite automation canvas showing trigger, email, delay, email, delay, email">
+          <figcaption>One nurture automation — trigger → email → delay → email → delay → email.</figcaption>
+        </figure>
+
+        <h4>Results</h4>
+        <table class="results">
+          <tr><th>Goal selected</th><th>Routed to</th><th>Automation triggered</th><th>Email 1 sent</th></tr>
+          <tr><td>Lose weight</td><td>Goal – Weight Loss</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+          <tr><td>Build strength</td><td>Goal – Strength</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+          <tr><td>General wellness & energy</td><td>Goal – Wellness</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+        </table>
+
+        <figure class="shot">
+          <img src="assets/maya-activity.png" alt="Activity Hub stats confirming started, completed, and sent counts for each automation">
+          <figcaption>Activity Hub — confirmed trigger counts, completed steps, and sends across all three branches.</figcaption>
+        </figure>
+
+        <h4>What this demonstrates</h4>
+        <ul>
+          <li>Building conditional, multi-path automations — not just simple A→B zaps</li>
+          <li>Reading and debugging third-party API data structures under real error conditions</li>
+          <li>Structuring a CRM around segmentation logic tied to actual business goals</li>
+          <li>Writing targeted, goal-specific nurture copy</li>
+          <li>Working iteratively and systematically through a non-trivial technical problem</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- PROJECT 2 -->
+    <article class="project">
+      <div class="project-head">
+        <span class="project-status status-progress">In progress</span>
+        <h3>AI Content Repurposing Pipeline</h3>
+        <div class="flow-line">Google&nbsp;Sheet <span class="arrow">→</span> Make.com <span class="arrow">→</span> Claude&nbsp;API <span class="arrow">→</span> captions&nbsp;written&nbsp;back&nbsp;to&nbsp;sheet</div>
+      </div>
+      <div class="project-body">
+        <p style="margin-top:0;">A pipeline that takes raw source content sitting in a Google Sheet, sends it through Make.com to the Claude API for caption generation, and writes the finished captions back into the sheet — turning one piece of content into ready-to-post copy with no manual rewriting.</p>
+        <p>Full write-up and screenshots coming once the build is finished and tested end-to-end.</p>
+      </div>
+    </article>
+
+    <!-- PROJECT 3 -->
+    <article class="project">
+      <div class="project-head">
+        <span class="project-status status-planned">Planned</span>
+        <h3>Social Media Auto-Posting Scheduler</h3>
+        <div class="flow-line">Content&nbsp;queue <span class="arrow">→</span> Make.com <span class="arrow">→</span> Meta&nbsp;API <span class="arrow">→</span> scheduled&nbsp;posts</div>
+      </div>
+      <div class="project-body">
+        <p style="margin-top:0;">Third project in the portfolio series — not yet started. Details to follow.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="node-mark"></div>
+    <div class="section-head">
+      <div class="kicker">03 · Integrations</div>
+      <h2>Tools & skills</h2>
+      <p>The stack I build with.</p>
+    </div>
+
+    <div class="skill-group">
+      <h3>Automation platforms</h3>
+      <div class="chips">
+        <span class="chip">Make.com</span>
+        <span class="chip">Zapier</span>
+        <span class="chip">n8n</span>
+        <span class="chip">Google Apps Script</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>CRM & email marketing</h3>
+      <div class="chips">
+        <span class="chip">ActiveCampaign</span>
+        <span class="chip">MailerLite</span>
+        <span class="chip">GoHighLevel</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>AI & APIs</h3>
+      <div class="chips">
+        <span class="chip">Claude API</span>
+        <span class="chip">Meta / Facebook API</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Design & PM</h3>
+      <div class="chips">
+        <span class="chip">Canva</span>
+        <span class="chip">Framer</span>
+        <span class="chip">ClickUp</span>
+        <span class="chip">HTML / CSS basics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="node-mark"></div>
+    <div class="section-head">
+      <div class="kicker">04 · Output</div>
+      <h2>Let's connect</h2>
+      <p>Where this pipeline ends — with a conversation.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="LINKEDIN-LINK-HERE" target="_blank" rel="noopener">
+        <span><span class="label">LinkedIn</span><span class="value">Connect with me</span></span>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="contact-card" href="GITHUB-LINK-HERE" target="_blank" rel="noopener">
+        <span><span class="label">GitHub</span><span class="value">View my repos</span></span>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="contact-card" href="mailto:YOUR-EMAIL-HERE">
+        <span><span class="label">Email</span><span class="value">Send a message</span></span>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="contact-card" href="ONLINEJOBS-LINK-HERE" target="_blank" rel="noopener">
+        <span><span class="label">OnlineJobs.ph</span><span class="value">View my profile</span></span>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  </div><!-- /spine -->
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="mono">status: online · last deployed manually</div>
+</footer>
+
+</body>
+</html>
